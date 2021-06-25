@@ -9,7 +9,11 @@ import User from "../../models/User";
 import { loginValidationSchema } from "../../validationSchema/login";
 const { serverRuntimeConfig } = getConfig();
 
-const validator = async (req:NextApiRequest, res:NextApiResponse, next: () => void) => {
+const validator = async (
+    req: NextApiRequest,
+    res: NextApiResponse,
+    next: () => void
+) => {
     try {
         await loginValidationSchema.validate(req.body, { abortEarly: false });
         next();

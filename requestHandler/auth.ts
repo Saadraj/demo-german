@@ -13,7 +13,7 @@ interface cook {
 const auth = async (req: NextApiRequest, res: NextApiResponse, next) => {
     try {
         if (!req.cookies["lm-auth"]) {
-            return  res.redirect("/login");
+            return res.redirect("/login");
         }
         const temp = jwt.verify(
             req.cookies["lm-auth"],

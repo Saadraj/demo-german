@@ -7,7 +7,10 @@ import User from "../models/User";
 
 const { serverRuntimeConfig } = getConfig();
 
-const postRequestHandler = async (req:NextApiRequest, res:NextApiResponse) => {
+const postRequestHandler = async (
+    req: NextApiRequest,
+    res: NextApiResponse
+) => {
     try {
         const { password } = req.body;
         if (req.body.confirmPassword === password) {

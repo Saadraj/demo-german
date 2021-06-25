@@ -1,4 +1,9 @@
-import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
+import {
+    createMuiTheme,
+    CssBaseline,
+    responsiveFontSizes,
+    ThemeProvider,
+} from "@material-ui/core";
 import React from "react";
 
 function MyApp({ Component, pageProps }) {
@@ -6,18 +11,18 @@ function MyApp({ Component, pageProps }) {
         typography: {
             htmlFontSize: 16,
             fontSize: 8,
-            h5:{
-                fontSize: '.3rem',
+            h5: {
+                fontSize: ".3rem",
             },
-            button:{
-                fontSize: '.1rem',
-            }
+            button: {
+                fontSize: ".1rem",
+            },
         },
     });
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline/>
+        <ThemeProvider theme={responsiveFontSizes(theme)}>
+            <CssBaseline />
             <Component {...pageProps} />
         </ThemeProvider>
     );

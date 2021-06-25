@@ -23,13 +23,13 @@ export default function Loading() {
         <div className={classes.root}>
             <div>
                 <CircularProgress color="secondary" />
-                    <Typography
-                        variant="h4"
-                        component="span"
-                        className={classes.loading}
-                    >
-                        Loading....
-                    </Typography>
+                <Typography
+                    variant="h4"
+                    component="span"
+                    className={classes.loading}
+                >
+                    Loading....
+                </Typography>
             </div>
         </div>
     );

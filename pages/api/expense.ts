@@ -1,11 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
-import getConfig from "next/config";
 import connectDB from "../../db/index";
 import Expense from "../../models/Expense";
 import auth from "../../requestHandler/auth";
 import { expenseValidationSchema } from "../../validationSchema/expense";
-const { serverRuntimeConfig } = getConfig();
 
 const handler = nc<NextApiRequest, NextApiResponse>()
     .use(auth)

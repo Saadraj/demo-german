@@ -11,7 +11,7 @@ import {
     Paper,
     TextField,
     Theme,
-    Typography
+    Typography,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import axios from "axios";
@@ -57,18 +57,18 @@ const initialValues = {
     comment: "",
 };
 
-export default function CustomModal({ editedValue,open, handleClose }) {
+export default function CustomModal({ editedValue, open, handleClose }) {
     const classes = useStyles();
     const [errorMessage, setErrorMessage] = useState({
-        success:false,
-        message:''
+        success: false,
+        message: "",
     });
     useEffect(() => {
-         setErrorMessage({
-            success:false,
-            message:''
+        setErrorMessage({
+            success: false,
+            message: "",
         });
-    }, [open])
+    }, [open]);
 
     const submitHandler = async (values: {
         description: "";
@@ -93,7 +93,6 @@ export default function CustomModal({ editedValue,open, handleClose }) {
         comment: "";
     }) => {
         try {
-            console.log('edit',values)
             const validateData = await expenseValidationSchema.validate(values);
             const res = await axios.put(`/api/expense`, validateData);
             if (res.data.success) {
@@ -132,18 +131,24 @@ export default function CustomModal({ editedValue,open, handleClose }) {
                     <Formik
                         initialValues={editedValue || initialValues}
                         validationSchema={expenseValidationSchema}
-                        onSubmit={ Boolean(editedValue)? editHandler: submitHandler}
+                        onSubmit={
+                            Boolean(editedValue) ? editHandler : submitHandler
+                        }
                         enableReinitialize
                     >
                         {({ isSubmitting, isValidating }) => (
                             <Form>
                                 {errorMessage.message && (
                                     <Alert
-                                        severity={errorMessage.success?'success':'error'}
+                                        severity={
+                                            errorMessage.success
+                                                ? "success"
+                                                : "error"
+                                        }
                                         onClose={() => {
                                             setErrorMessage({
-                                                message:'',
-                                                success:false
+                                                message: "",
+                                                success: false,
                                             });
                                         }}
                                     >
@@ -155,7 +160,7 @@ export default function CustomModal({ editedValue,open, handleClose }) {
                                         as={TextField}
                                         name="description"
                                         variant="outlined"
-                                        label='Description'
+                                        label="Description"
                                         multiline
                                         rowsMax={4}
                                     />
@@ -195,7 +200,6 @@ export default function CustomModal({ editedValue,open, handleClose }) {
                                         variant="outlined"
                                         multiline
                                         rowsMax={4}
-
                                     />
                                     <ErrorMessage name="comment">
                                         {(msg) => (
@@ -214,7 +218,9 @@ export default function CustomModal({ editedValue,open, handleClose }) {
                                         type="submit"
                                         disabled={isSubmitting || isValidating}
                                     >
-                                        {Boolean(editedValue)? 'Update': 'Save'}
+                                        {Boolean(editedValue)
+                                            ? "Update"
+                                            : "Save"}
                                     </Button>
                                 </FormControl>
                             </Form>
